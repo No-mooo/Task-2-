@@ -1,0 +1,38 @@
+.modal-basket {
+    width: 1440px;
+    background-color: white;
+    border-radius: 7px;
+}
+
+.modal-basket__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+    border-radius: 7px;
+    background-color: rgba(245, 245, 245, 1);
+    margin-bottom: 71px;
+}
+
+.modal-basket__head span {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.modal-basket__head button {
+    height: fit-content;
+}
+
+.modal-basket__total {
+    margin-top: 20px;
+    margin-bottom: 89px;
+    padding-right: 120px;
+    font-weight: 700;
+    font: 18px;
+    color: rgba(0, 0, 0, 1);
+    text-align: end;   
+}
+
+.modal-basket__total span {
+    margin-left: 53px;
+}

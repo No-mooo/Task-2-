@@ -1,0 +1,35 @@
+.ItemBasket {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: background-color 1s;
+}
+
+.ItemBasket_selected {
+  background: #75aaf1;
+  color: #fff;
+}
+
+.ItemBasket-code {
+  padding: 20px 10px 20px 20px;
+}
+
+.ItemBasket-title {
+  width: max-content;
+  padding: 20px 10px;
+}
+
+.ItemBasket__price {
+  margin-left: auto;
+}
+
+.ItemBasket__count {
+  margin-left: 62px;
+  margin-right: 24px;
+}
+
+.ItemBasket-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 20px 20px 10px;
+}

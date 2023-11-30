@@ -1,9 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+import PropTypes, { number } from "prop-types";
 import './style.css';
 
 function Item(props) {
-
   const callbacks = {
     action: (e) => {
       e.stopPropagation();
@@ -12,14 +11,20 @@ function Item(props) {
   }
 
   return (
-    <div className='Item'>
-      <div className='Item-code'>{props.item.code}</div>
-      <div className='Item-title'>
+    <div className='ItemBasket'>
+      <div className='ItemBasket-code'>{props.item.code}</div>
+      <div className='ItemBasket-title'>
         {props.item.title}
       </div>
-      <div className='Item-actions'>
+      <span className="ItemBasket__price">
+        {props.item.price} ₽
+      </span>
+      <span className="ItemBasket__count">
+        { props.item.countInBasket } шт
+      </span>
+      <div className='ItemBasket-actions'>
         <button onClick={callbacks.action}>
-          Добавить
+          Удалить
         </button>
       </div>
     </div>
@@ -30,7 +35,8 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
-    price: PropTypes.number
+    price: PropTypes.number,
+    countInBasket: PropTypes.number,
   }).isRequired,
   action: PropTypes.func,
 };
