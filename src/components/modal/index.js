@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 import PropTypes from 'prop-types';
-import { createPortal } from "react-dom";
 
 function Modal({ children, closeModal }) {
     function checkcloseModal(event) {
@@ -9,14 +8,9 @@ function Modal({ children, closeModal }) {
     }
 
     return (
-        <>
-            {createPortal(
-                <div className="Modal" onClick={checkcloseModal}>
-                    { children }
-                </div>
-
-            , document.body)}
-        </>
+        <div className="Modal" onClick={checkcloseModal}>
+            { children }
+        </div>
     )
 }
 

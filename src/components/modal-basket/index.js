@@ -3,12 +3,12 @@ import "./style.css";
 import List from "../list";
 import itemBasket from "../item-basket";
 import PropTypes from 'prop-types';
+import { numberDecipher } from "../../utils";
 
 
 function ModalBasket({ basket, totalSumBasket, delBasketItem, closeModal }) {
     return (
         <div className="modal-basket">
-
             <div className="modal-basket__head">
                 <span>Корзина</span> <button onClick={closeModal}>Закрыть</button>
             </div>
@@ -18,7 +18,7 @@ function ModalBasket({ basket, totalSumBasket, delBasketItem, closeModal }) {
                 actionItem={delBasketItem}
             />
             <div className="modal-basket__total">
-                Итого <span>{ totalSumBasket } ₽</span>
+                Итого <span>{ numberDecipher(totalSumBasket) } ₽</span>
             </div>
          
         </div>

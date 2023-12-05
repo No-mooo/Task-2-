@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes, { number } from "prop-types";
 import './style.css';
+import { numberDecipher } from "../../utils";
 
 function Item(props) {
   const callbacks = {
@@ -17,7 +18,7 @@ function Item(props) {
         {props.item.title}
       </div>
       <span className="ItemBasket__price">
-        {props.item.price} ₽
+        {numberDecipher(props.item.price)} ₽
       </span>
       <span className="ItemBasket__count">
         { props.item.countInBasket } шт

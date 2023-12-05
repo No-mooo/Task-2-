@@ -1,15 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
-import {plural} from "../../utils";
+import {numberDecipher, plural} from "../../utils";
 import PropTypes from 'prop-types';
 import Controls from "../controls";
 
-import Modal from '../modal';
-import ModalBasket from '../modal-basket';
-
-function statusBasket({ basket, delBasketItem }) {
-    const totalSum = basket.reduce((sum, next) => sum + next.price * next.countInBasket, 0);
-
+function statusBasket({ basket, openModal, totalSum }) {
     function getCurrentStatusBasket() {
         if (basket.length == 0) return "пусто";
 
@@ -19,33 +14,12 @@ function statusBasket({ basket, delBasketItem }) {
             many: 'товаров'
         });
 
-        return `${basket.length} ${usePlural} / ${totalSum} ₽`;
+        return `${basket.length} ${usePlural} / ${numberDecipher(totalSum)} ₽`;
     }
-
-    function closeModal() {
-        setShowModal(false);
-    }
-
-    function openModal() {
-        setShowModal(true);
-    }
-
-    const [showModal, setShowModal] = useState(false);
 
     return (
         <div className="StatusBasket"> 
             В корзине:<span>{getCurrentStatusBasket()}</span><Controls action={openModal} />
-
-            {showModal && 
-                <Modal closeModal={closeModal}>
-                    <ModalBasket
-                        closeModal={closeModal}
-                        delBasketItem={delBasketItem}
-                        totalSumBasket={ totalSum }
-                        basket={ basket }
-                    />
-                </Modal>
-            }
         </div>
     )
 }
@@ -54,11 +28,12 @@ statusBasket.propTypes = {
     basket: PropTypes.arrayOf(PropTypes.shape({
       code: PropTypes.number
     })).isRequired,
-    delBasketItem: PropTypes.func,
+    openModal: PropTypes.func,
+    totalSum: PropTypes.number
 };
   
 statusBasket.defaultProps = {
-    delBasketItem: () => {
+    openModal: () => {
     },
 }
 

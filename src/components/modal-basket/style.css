@@ -2,6 +2,7 @@
     width: 1440px;
     background-color: white;
     border-radius: 7px;
+    margin: auto;
 }
 
 .modal-basket__head {

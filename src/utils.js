@@ -15,3 +15,13 @@ export function plural(value, variants = {}, locale = 'ru-RU') {
     // Возвращаем вариант по ключу, если он есть
     return variants[key] || '';
 }
+
+/**
+ * Разбиение числа на разряды
+ * Возвращает вариант с учётом правил множественного числа под указанную локаль
+ * @param num {Number} Число, которое нужно разбить
+ * @returns {*|string}
+ */
+export function numberDecipher(num) {
+    return num.toLocaleString('ru');
+}

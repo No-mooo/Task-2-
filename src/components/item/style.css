@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   transition: background-color 1s;
+  align-items: center;
 }
 
 .Item_selected {
@@ -14,10 +15,13 @@
 }
 
 .Item-title {
-  width: 100%;
   padding: 20px 10px;
 }
 
+.Item__price {
+  margin-left: auto;
+  margin-right: 24px;
+}
 .Item-actions {
   display: flex;
   justify-content: flex-end;
