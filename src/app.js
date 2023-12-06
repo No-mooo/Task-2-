@@ -14,37 +14,21 @@ import ModalBasket from"./components/modal-basket";
  */
 function App({store}) {
   const list = store.getState().list;
-  const [basket, setBasket] = useState([]);
+  const basket = store.getBasket();
   const totalSumBasket = basket.reduce((sum, next) => sum + next.price * next.countInBasket, 0);
 
   const callbacks = {
     onGetBasket: useCallback(() => {
-      return basket;
-    }, [basket]),
+      return store.getBasket();
+    }, [store]),
 
     onDeleteItemBasket: useCallback((code) => {
-      setBasket(prev => {
-        return prev.filter(itemPrev => itemPrev.code !== code);
-      });
-    }, [basket]),
+      store.deleteBasket(code);
+    }, [store]),
 
     onAddItemBasket: useCallback(code => {
-      const findItem = basket.findIndex(item => item.code === code);
-
-      if (findItem === -1) {
-        const item = store.getState().list.find(storeItem => storeItem.code === code);
-
-        setBasket(prev => {
-          return [...prev, {...item, countInBasket: 1}];
-        });
-
-      } else {
-        setBasket(prev => prev.map(itemPrev => {
-          return itemPrev.code == code ? {...itemPrev, countInBasket: itemPrev.countInBasket + 1} : itemPrev;
-        }));
-      }
-
-    }, [basket]),
+      store.addBasket(code);
+    }, [store]),
   }
 
   function closeBasketModal() {

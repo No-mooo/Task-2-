@@ -21,6 +21,34 @@ class Store {
     }
   }
 
+  getBasket() {
+    return this.basket;
+  }
+
+  setBasket(newBasket) {
+    this.basket = newBasket;
+    // Вызываем всех слушателей
+    for (const listener of this.listeners) listener();
+  }
+
+  deleteBasket(code) {
+    this.setBasket(this.basket.filter(item => item.code !== code));
+  }
+
+  addBasket(code) {
+    const findItem = this.basket.findIndex(item => item.code === code);
+
+    if (findItem === -1) {
+      const item = this.getState().list.find(storeItem => storeItem.code === code);
+      this.setBasket([...this.basket, {...item, countInBasket: 1}]);
+
+    } else {
+      this.setBasket(this.basket.map(item => {
+        return item.code == code ? {...item, countInBasket: item.countInBasket + 1} : item;
+      }));
+    }
+  }
+
   /**
    * Выбор состояния
    * @returns {Object}
